@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7조</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .mytitle {
+            height: 250px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://images.unsplash.com/photo-1511992243105-2992b3fd0410?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .mytitle>button {
+            width: 150px;
+            height: 50px;
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .mycards {
+            width: 1200px;
+            margin: 30px auto 0px auto;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-footer .text-body-secondary {
+            margin-right: auto;
+        }
+
+        .card-footer .btn-primary {
+            margin-left: auto;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 400px;
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+            z-index: 999;
+        }
+
+        .show-popup {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const showButtons = document.querySelectorAll('.show-popup');
+            const closeButtons = document.querySelectorAll('.close-popup');
+
+            showButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetPopupId = button.getAttribute('data-target');
+                    const targetPopup = document.getElementById(targetPopupId);
+                    targetPopup.style.display = 'block';
+                });
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetPopup = button.closest('.popup');
+                    targetPopup.style.display = 'none';
+                });
+            });
+
+            const saveButtons = document.querySelectorAll('.save-button');
+            saveButtons.forEach((button, index) => {
+                button.addEventListener('click', function () {
+                    const name = document.getElementById(`name${index}`).value;
+                    const mbti = document.getElementById(`mbti${index}`).value;
+                    const hobby = document.getElementById(`hobby${index}`).value;
+                    const resolution = document.getElementById(`resolution${index}`).value;
+                    
+                    localStorage.setItem(`name${index}`, name);
+                    localStorage.setItem(`mbti${index}`, mbti);
+                    localStorage.setItem(`hobby${index}`, hobby);
+                    localStorage.setItem(`resolution${index}`, resolution);
+                    alert(`이름: ${name}, MBTI: ${mbti}, 취미: ${hobby}, 각오: ${resolution} 가 저장되었습니다.`);
+                });
+            });
+
+            const editButtons = document.querySelectorAll('.edit-button');
+            editButtons.forEach((button, index) => {
+                button.addEventListener('click', function () {
+                    const name = document.getElementById(`name${index}`);
+                    const mbti = document.getElementById(`mbti${index}`);
+                    const hobby = document.getElementById(`hobby${index}`);
+                    const resolution = document.getElementById(`resolution${index}`);
+
+                    name.disabled = false;
+                    mbti.disabled = false;
+                    hobby.disabled = false;
+                    resolution.disabled = false;
+
+                    document.getElementById(`saveButton${index}`).disabled = false;
+                    button.disabled = true;
+                });
+            });
+
+            const saveButton = document.getElementById('saveButton');
+            saveButton.addEventListener('click', function () {
+                alert('저장되었습니다.');
+            });
+
+            for (let index = 0; index < 5; index++) {
+                const name = localStorage.getItem(`name${index}`);
+                const mbti = localStorage.getItem(`mbti${index}`);
+                const hobby = localStorage.getItem(`hobby${index}`);
+                const resolution = localStorage.getItem(`resolution${index}`);
+                if (name) document.getElementById(`name${index}`).value = name;
+                if (mbti) document.getElementById(`mbti${index}`).value = mbti;
+                if (hobby) document.getElementById(`hobby${index}`).value = hobby;
+                if (resolution) document.getElementById(`resolution${index}`).value = resolution;
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="mytitle">
+        <h1>7조 팀원 소개</h1>
+        <button id="saveButton">저장하기</button>
+    </div>
+    <div class="mycards">
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTlM5Ag_ovTNbcEGElA1Qvyb-fQb4VJ8JtKVosMZs3K1wLnc7ge"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">조장 윤형석</h5>
+                        <p class="card-text">조장</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">의견을 적극적으로 내자.</small>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary show-popup" data-target="popup0">자세히 보기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTlM5Ag_ovTNbcEGElA1Qvyb-fQb4VJ8JtKVosMZs3K1wLnc7ge"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">이요한</h5>
+                        <p class="card-text">조원</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">까먹기전에 복습하자.</small>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary show-popup" data-target="popup1">자세히 보기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTlM5Ag_ovTNbcEGElA1Qvyb-fQb4VJ8JtKVosMZs3K1wLnc7ge"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">김호연</h5>
+                        <p class="card-text">조원</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">모든 시간 약속을 잘 지킵시다.</small>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary show-popup" data-target="popup2">자세히 보기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTlM5Ag_ovTNbcEGElA1Qvyb-fQb4VJ8JtKVosMZs3K1wLnc7ge"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">고태리</h5>
+                        <p class="card-text">조원</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">모르는 내용이 있다면 확실히 알아보고 넘어간다.</small>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary show-popup" data-target="popup3">자세히 보기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTlM5Ag_ovTNbcEGElA1Qvyb-fQb4VJ8JtKVosMZs3K1wLnc7ge"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">박성현</h5>
+                        <p class="card-text">조원</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">의견을 적극적으로 내자.</small>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary show-popup" data-target="popup4">자세히 보기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup0">
+        <div class="popup-content">
+            <h2>윤형석 TMI</h2>
+            <p>이름: <input type="text" name="name" id="name0" value="윤형석" disabled></p>
+            <p>MBTI: <input type="text" name="mbti" id="mbti0" value="ISTJ" disabled></p>
+            <p>취미: <input type="text" name="hobby" id="hobby0" value="취미" disabled></p>
+            <p>각오: <textarea name="resolution" id="resolution0" disabled>TMI</textarea></p>
+            <button class="close-popup btn btn-primary">닫기</button>
+            <button class="save-button btn btn-primary" id="saveButton0" disabled>저장</button>
+            <button class="edit-button btn btn-primary">수정</button>
+        </div>
+    </div>
+    <div class="popup" id="popup1">
+        <div class="popup-content">
+            <h2>이요한 TMI</h2>
+            <p>이름: <input type="text" name="name" id="name1" value="이요한" disabled></p>
+            <p>MBTI: <input type="text" name="mbti" id="mbti1" value="INFJ" disabled></p>
+            <p>취미: <input type="text" name="hobby" id="hobby1" value="취미" disabled></p>
+            <p>각오: <textarea name="resolution" id="resolution1" disabled>TMI</textarea></p>
+            <button class="close-popup btn btn-primary">닫기</button>
+            <button class="save-button btn btn-primary" id="saveButton1" disabled>저장</button>
+            <button class="edit-button btn btn-primary">수정</button>
+        </div>
+    </div>
+    <div class="popup" id="popup2">
+        <div class="popup-content">
+            <h2>김호연 TMI</h2>
+            <p>이름: <input type="text" name="name" id="name2" value="김호연" disabled></p>
+            <p>MBTI: <input type="text" name="mbti" id="mbti2" value="INTP" disabled></p>
+            <p>취미: <input type="text" name="hobby" id="hobby2" value="취미" disabled></p>
+            <p>각오: <textarea name="resolution" id="resolution2" disabled>TMI</textarea></p>
+            <button class="close-popup btn btn-primary">닫기</button>
+            <button class="save-button btn btn-primary" id="saveButton2" disabled>저장</button>
+            <button class="edit-button btn btn-primary">수정</button>
+        </div>
+    </div>
+    <div class="popup" id="popup3">
+        <div class="popup-content">
+            <h2>고태리 TMI</h2>
+            <p>이름: <input type="text" name="name" id="name3" value="고태리" disabled></p>
+            <p>MBTI: <input type="text" name="mbti" id="mbti3" value="INFJ" disabled></p>
+            <p>취미: <input type="text" name="hobby" id="hobby3" value="취미" disabled></p>
+            <p>각오: <textarea name="resolution" id="resolution3" disabled>TMI</textarea></p>
+            <button class="close-popup btn btn-primary">닫기</button>
+            <button class="save-button btn btn-primary" id="saveButton3" disabled>저장</button>
+            <button class="edit-button btn btn-primary">수정</button>
+        </div>
+    </div>
+    <div class="popup" id="popup4">
+        <div class="popup-content">
+            <h2>박성현 TMI</h2>
+            <p>이름: <input type="text" name="name" id="name4" value="박성현" disabled></p>
+            <p>MBTI: <input type="text" name="mbti" id="mbti4" value="MBTI" disabled></p>
+            <p>취미: <input type="text" name="hobby" id="hobby4" value="취미" disabled></p>
+            <p>각오: <textarea name="resolution" id="resolution4" disabled>TMI</textarea></p>
+            <button class="close-popup btn btn-primary">닫기</button>
+            <button class="save-button btn btn-primary" id="saveButton4" disabled>저장</button>
+            <button class="edit-button btn btn-primary">수정</button>
+        </div>
+    </div>
+</body>
+
+</html>
