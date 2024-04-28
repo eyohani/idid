@@ -1,0 +1,102 @@
+/* 페이지 폰트*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* 페이지의 상단 타이틀 */
+header {
+    background-color: #000000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 검색 입력 필드와 버튼을 감싸는 컨테이너 */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 검색 텍스트 입력*/
+.search-container input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+}
+
+/* 검색 버튼 */
+.search-container button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #00478f;
+}
+
+/* 영화 카드 컨테이너 */
+#movieContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+/* 영화 카드  */
+.movieCard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.movieCard:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 영화 포스터 이미지 */
+.movieCard img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* 영화 정보 */
+.movieCard .movieInfo {
+    padding: 10px;
+}
+
+/* 영화 제목*/
+.movieCard h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* 영화 설명 */
+.movieCard p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* HOME 버튼 */
+#homeButton {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#homeButton:hover {
+    background-color: #00478f;
+}
