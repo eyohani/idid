@@ -1,4 +1,4 @@
-/* 페이지 폰트*/
+/* 페이지 폰트 */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -21,7 +21,7 @@ header {
     margin-top: 20px;
 }
 
-/* 검색 텍스트 입력*/
+/* 검색 텍스트 입력 */
 .search-container input[type="text"] {
     width: 300px;
     padding: 10px;
@@ -50,7 +50,8 @@ header {
     gap: 20px;
     padding: 20px;
 }
-/* 영화 카드  */
+
+/* 영화 카드 */
 .movieCard {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -75,7 +76,7 @@ header {
     padding: 10px;
 }
 
-/* 영화 제목*/
+/* 영화 제목 */
 .movieCard h2 {
     margin-top: 0;
     margin-bottom: 10px;
